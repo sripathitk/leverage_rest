@@ -27,7 +27,7 @@
         "fno_exchange": "NFO",
         "cePositionType": "CE",
         "pePositionType": "PE",
-        "leverageQuantity": 25,
+        "leverageQuantity": 75,
         "exchange": "NFO",
         "lev_order_type": "SELL",
         "slmOrderType": "BUY",
