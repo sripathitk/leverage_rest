@@ -70,52 +70,55 @@ def placelev():
                                                                   api_secret=api_secret)
               alice = AliceBlue(username=username, password=password, access_token=access_token)
               logging.info("Stored access token is invalid , generated a new access token {} ".format(access_token))
-       return alice.get_order_history()
-       # try:
-       #        balance = alice.get_balance()
-       #        if balance['status'] == 'success':
-       #               modified_date = datetime.date.today().__str__()
-       #               logging.info("Access token generation and verification  - success ")
-       #               users_d['users']['suma']['aliceblue']['access_token'] = access_token
-       #               users_d['users']['suma']['aliceblue']['modified_date'] = modified_date
-       #               logging.info('access token  & modified_date values are {} & {}'.format(access_token, modified_date))
-       #               print(access_token)
-       #               with open(os.path.join(os.getcwd(), 'config/UserConfig.json'), 'w') as f:
-       #                      json.dump(users_d, f)
-       #        req_data = request.get_json()
-       #        if(req_data):
-       #               instrument_token=  req_data['instrument_token'];
-       #               exchange = req_data['exchange'];
-       #               trading_symbol = req_data['trading_symbol'];
-       #               lev_quantity = int(req_data['lev_quantity']);
-       #               lev_order_type_s = req_data['lev_order_type'];
-       #               if lev_order_type_s== 'SELL':
-       #                      lev_order_type=TransactionType.Sell
-       #               elif lev_order_type_s== 'BUY':
-       #                      lev_order_type = TransactionType.Buy
-       #               logging.info('placing leverage order  for {} with quantity {}'
-       #                            .format(trading_symbol, lev_quantity))
-       #               instrument = alice.get_instrument_by_token(exchange, instrument_token)
-       #               logging.info('Leverage order placed for {} with quantity {} and type {}'.
-       #                            format(trading_symbol, lev_quantity, lev_order_type.value))
-       #               response = alice.place_order(transaction_type=lev_order_type, instrument=instrument,
-       #                                                 quantity=lev_quantity,
-       #                                                 order_type=OrderType.Market,
-       #                                                 product_type=ProductType.Intraday,
-       #                                                 price=0.0,
-       #                                                 trigger_price=0.0,
-       #                                                 stop_loss=None,
-       #                                                 square_off=None,
-       #                                                 trailing_sl=None,
-       #                                                 is_amo=False)
-       #               logging.info('leverage order response from broker is {}'.format(response))
-       #               if response['status'] == 'success':
-       #                      logging.info(' Leverage order placed successfully for {} with quantity {}'
-       #                                   .format(trading_symbol, lev_quantity))
-       #                      return response
-       # except Exception as e:
-       #        logging.error("Exception in executing Penguin Cave and Smoke in Black {}".format(e))
-       # return render_template('homepage.html')
+    #   return alice.get_order_history()
+    try:
+        balance = alice.get_balance()
+        if balance['status'] == 'success':
+            modified_date = datetime.date.today().__str__()
+            logging.info("Access token generation and verification  - success ")
+            users_d['users']['suma']['aliceblue']['access_token'] = access_token
+            users_d['users']['suma']['aliceblue']['modified_date'] = modified_date
+            logging.info('access token  & modified_date values are {} & {}'.format(access_token, modified_date))
+            print(access_token)
+            with open(os.path.join(os.getcwd(), 'config/UserConfig.json'), 'w') as f:
+                json.dump(users_d, f)
+        req_data = request.get_json()
+        if req_data:
+            instrument_token = req_data['instrument_token'];
+            exchange = req_data['exchange'];
+            trading_symbol = req_data['trading_symbol'];
+            if nf_non_trading_symbol not in trading_symbol:
+                lev_quantity = nf_leverage_quantity
+            elif nf_non_trading_symbol in trading_symbol:
+                lev_quantity = bnf_leverage_quantity
+            lev_order_type_s = req_data['lev_order_type'];
+            if lev_order_type_s == 'SELL':
+                lev_order_type = TransactionType.Sell
+            elif lev_order_type_s == 'BUY':
+                lev_order_type = TransactionType.Buy
+            logging.info('placing leverage order  for {} with quantity {}'
+                         .format(trading_symbol, lev_quantity))
+            instrument = alice.get_instrument_by_token(exchange, instrument_token)
+            logging.info('Leverage order placed for {} with quantity {} and type {}'.
+                         format(trading_symbol, lev_quantity, lev_order_type.value))
+            response = alice.place_order(transaction_type=lev_order_type, instrument=instrument,
+                                         quantity=lev_quantity,
+                                         order_type=OrderType.Market,
+                                         product_type=ProductType.Intraday,
+                                         price=0.0,
+                                         trigger_price=0.0,
+                                         stop_loss=None,
+                                         square_off=None,
+                                         trailing_sl=None,
+                                         is_amo=False)
+            logging.info('leverage order response from broker is {}'.format(response))
+            if response['status'] == 'success':
+                logging.info(' Leverage order placed successfully for {} with quantity {}'
+                             .format(trading_symbol, lev_quantity))
+                return response
+    except Exception as e:
+        logging.error("Exception in executing Penguin Cave and Smoke in Black {}".format(e))
+    return render_template('homepage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

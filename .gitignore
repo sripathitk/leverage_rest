@@ -1,0 +1,8 @@
+/venv/*
+/.idea/*
+*.log
+**/*.log
+*.pyc
+**/*.pyc
+*.xml
+**/*.xml
