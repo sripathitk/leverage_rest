@@ -1,0 +1,61 @@
+{
+  "users": {
+    "suma": {
+      "tradetron_login_id": "sripathi_foru@yahoo.co.in",
+      "tradetron_password": "F@rmosa1",
+      "page_load_wait_time": 10,
+      "lev_bnf": {
+        "enabled": "True",
+        "trading_symbol": "BANKNIFTY",
+        "lot_size": 25,
+        "ref_trade_size": 475,
+        "fno_exchange": "NFO",
+        "cePositionType": "CE",
+        "pePositionType": "PE",
+        "leverageQuantity": 25,
+        "exchange": "NFO",
+        "lev_order_type": "SELL",
+        "slmOrderType": "BUY",
+        "ref_pos_quantity": 2
+      },
+      "lev_nf": {
+        "enabled": "True",
+        "trading_symbol": "NIFTY",
+        "non_trading_symbol": "BANKNIFTY",
+        "lot_size": 75,
+        "ref_trade_size": 1425,
+        "fno_exchange": "NFO",
+        "cePositionType": "CE",
+        "pePositionType": "PE",
+        "leverageQuantity": 25,
+        "exchange": "NFO",
+        "lev_order_type": "SELL",
+        "slmOrderType": "BUY",
+        "ref_pos_quantity": 2
+      },
+      "zerodha": {
+        "username": "YI5116",
+        "password": "@R15MMTI",
+        "twoFA": 565784,
+        "api_key": "2vho8z6rmi3myiuh",
+        "api_secret": "gkndpwmyjh8r4uomjbcqehal6vomptpm",
+        "request_token": "7GkLHBeg1eStFQOplcjykDgsPdgcskgh",
+        "access_token": "NmCZ8R7J6bLcjOgUiikgoBox8RqGhDwM",
+        "access_url": "https://kite.trade/connect/login?v=3&api_key=",
+        "page_load_wait_time": 10,
+        "modified_date": "2020-09-16"
+      },
+      "aliceblue": {
+        "username": "113714",
+        "password": "F@rmosa1",
+        "twoFA": "a",
+        "api_key": "113714",
+        "api_secret": "CWJRVU2Q5RC3Z3N96XMSDWVIPBEDFHWWWOO263ANJR69V52F3HQYZQMPABCUPZLX",
+        "access_token": "0y8uFavMR0Stwhy4VAVgUctYbYwPKYgblbLIWCdNTbg.WqMWZpdPCAOCdGMdcBYpsTxqarx8HQkg6AUH8Hh259U",
+        "access_url": "https://ant.aliceblueonline.com/",
+        "page_load_wait_time": 10,
+        "modified_date": "2020-09-23"
+      }
+    }
+  }
+}
